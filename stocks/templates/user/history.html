@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+{% extends 'user/base1.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block content %}
+<div class="alert alert-secondary">Here is your Search List!!</div><br>
+
+    {% for item in list %}
+    <div class="card" style="width: 18rem;color: gray;">
+      <img src="{{item.thumbnail}}" class="card-img-top" alt="">
+      <div class="card-body" style="color:gray;">
+        <h5 class="card-title">{{item.title}}</h5>
+          <p class="card-text">By <em>{{user}}</em> <br>On {{item.date_time}}<br></p>
+          <a href="media/{{item.file}}" class="btn btn-primary">Play</a>
+          <br><p>
+          <form method="POST">
+              {% csrf_token %}
+          <fieldset class="form-group">
+            <div class="form-group">
+                <button class="btn btn-danger" type="submit" name="delete" value="{{item.file}}">Delete</button>
+
+            </div>
+
+          </fieldset>
+          </form>
+          </p>
+      </div>
+    </div>
+    <br>
+    {% endfor %}
+{% endblock %}
+</body>
+</html>

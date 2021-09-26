@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% extends 'user/base1.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Get Food!!</title>
+</head>
+<body>
+
+  {% block content%}
+  <div class="alert alert-{{type}}">{{result}}</div>
+  <form method="POST">
+      {% csrf_token %}
+      <center>
+        <fieldset class="form-group">
+
+            <div class="form-control">
+                Enter food to be found:<br>
+            <input name="name" aria-label="Enter dish name" type="text" placeholder="Enter Dish" class="form-control">
+            </div>
+            <br>
+            <div class="form-control">
+            <input name="num" placeholder="Number of dishes" type="number" aria-selected="true" aria-label="3" class="form-control">
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">find</button>
+            </div>
+        <br>
+        </fieldset>
+
+          </center>
+  </form>
+  <div class="row">
+
+  {% for item in json_data %}
+      <div class="column">
+          <img src={{item.image}} class="rounded">  <div class="alert alert-info">{{item.title}}</div><br>
+          </div>
+
+        {% endfor %}
+
+  </div>
+
+  {% endblock %}
+</body>
+</html>

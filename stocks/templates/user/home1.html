@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% extends 'user/base1.html' %}
+{% load static %}
+<html lang="en">
+<body>
+{% block content%}
+    {% if user.is_authenticated %}
+        <div class="alert alert-warning alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <em style="color:tomato;">{{info}}<br>
+            Storage>{{storage}}MB</em>
+        </div>
+
+    {% endif %}
+      <center>
+          <p><h3 style="color:white">Welcome to Media Downloader for </h3><h3 style="color:red">Youtube
+        <br><br>
+          <a class="btn btn-danger" href="{% url 'download_video' %}">Download Video </a>
+          <br><br>
+
+          <a class="btn btn-info" href="{% url 'download_audio' %}">Download Audio</a>
+      </center>
+
+{% endblock%}
+</body>
+</html>

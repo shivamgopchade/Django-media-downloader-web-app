@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+{% extends 'user/base1.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Video Downloader</title>
+</head>
+<body>
+{% block content %}
+
+<form method="POST">
+    {% csrf_token %}
+    <center>
+    <fieldset class="form-group">
+        <div class="form-control" >
+
+            <input name="link" class="form-control" placeholder="Paste youtube video url">
+
+        <br>
+
+        Resolution:
+
+            <select class="form-select" name="res">
+                <option selected value="1080p">1080p</option>
+                <option value="720p">720p</option>
+                <option value="480p">480p</option>
+                <option value="360p">360p</option>
+                <option value="240p">240p</option>
+                <option value="144p">144p</option>
+            </select>
+        </div>
+
+        <br>
+
+        <br>
+        <div class="form-group">
+        <button class="btn btn-info" type="submit">download video</button>
+        </div>
+    </fieldset>
+    </center>
+
+</form>
+<div class="d-flex justify-content-center">
+  <div class="spinner-border" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+<center>
+    <div class="alert alert-{{type}}">{{ret}}
+        <br>
+    {% if val %}
+        Video title:{{title}}
+        <br>
+        <a class="btn btn-danger" href="media/downloads/{{user}}/{{link}}">Watch Now>></a>
+        <br><br>
+        <a class="btn btn-warning" href="{% url 'download' user link %}">Download Now>></a>
+    {% endif %}
+    </div>
+</center>
+
+{% endblock %}
+</body>
+</html>

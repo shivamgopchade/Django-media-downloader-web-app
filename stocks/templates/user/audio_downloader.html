@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+{% extends 'user/base1.html' %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Audio Downloader</title>
+</head>
+<body>
+{% block content %}
+<form method="POST">
+    {% csrf_token %}
+    <center>
+    <fieldset class="form-group">
+        <div class="form-control" >
+            <input name="link" class="form-control" placeholder="Paste youtube video url">
+
+        <br>
+        Quality:
+            <select class="form-select" name="abr" aria-label="Default select example">
+
+                <option value="160kbps" selected>160kbps</option>
+                <option value="128kbps">128kbps</option>
+                <option value="70kbps">70kbps</option>
+                <option value="50kbps">50kbps</option>
+                <option value="48kbps">48kbps</option>
+            </select>
+        </div>
+        <br>
+
+        <br>
+        <div class="form-group">
+        <button class="btn btn-info" type="submit">Download Audio</button>
+        </div>
+    </fieldset>
+    </center>
+
+</form>
+
+<center>
+    <div class="alert alert-{{type}}">{{ret}}
+        <br>
+    {% if val %}
+        Video title:{{title}}
+        <br>
+        <a class="btn btn-danger" href="media/downloads/{{link}}">Listen Now>></a>
+        <br><br>
+        <a class="btn btn-warning" href="{% url 'download' user link %}">Download Now>></a>
+        <br><br>Current file is mp4 :(
+        <p>
+        <a class="btn btn-info" href="https://cloudconvert.com/mp4-to-mp3" >Convert to mp3 Here!!</a>
+    {% endif %}
+    </div>
+</center>
+
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends 'user/base1.html' %}
+{% load crispy_forms_tags %}
+
+<body>
+{% block content %}
+<div class="alert alert-success">
+    {{ret}}
+<form method="POST">
+  {% csrf_token %}
+  <fieldset class="form-group">
+    <legend class="border-bottom mb-4">Join Today!!</legend>
+      {{ form|crispy }}
+  </fieldset>
+  <div class="form-group">
+    <button class="btn btn-success" type="submit">Register</button>
+  </div>
+</form>
+</div>
+<div class="border-top pt-4">
+            <small class="text-muted">
+                Already have am Account?<a class="ml-2" href="{% url 'login' %}">Sign In</a>
+            </small>
+
+</div>
+
+{% endblock %}
+</body>
+</html>
